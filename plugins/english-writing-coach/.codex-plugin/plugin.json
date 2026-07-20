@@ -1,0 +1,31 @@
+{
+  "name": "english-writing-coach",
+  "version": "0.2.0",
+  "description": "Global Korean-first English writing coaching through a SessionStart hook.",
+  "author": {
+    "name": "jujeon"
+  },
+  "license": "MIT",
+  "keywords": [
+    "english",
+    "writing",
+    "korean",
+    "coaching",
+    "hooks"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks-codex.json",
+  "interface": {
+    "displayName": "English Writing Coach",
+    "shortDescription": "English coaching with Korean explanations",
+    "longDescription": "Injects English-writing coaching at session start while keeping explanations and task responses in Korean.",
+    "developerName": "jujeon",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive"
+    ],
+    "defaultPrompt": [
+      "Help me practice writing natural English."
+    ]
+  }
+}

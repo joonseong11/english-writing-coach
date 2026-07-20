@@ -1,0 +1,15 @@
+{
+  "name": "use-english",
+  "description": "Local marketplace for the English Writing Coach plugin.",
+  "owner": {
+    "name": "jujeon"
+  },
+  "plugins": [
+    {
+      "name": "english-writing-coach",
+      "description": "English writing coaching with Korean explanations in every Claude Code session.",
+      "version": "0.2.0",
+      "source": "./"
+    }
+  ]
+}

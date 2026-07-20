@@ -1,0 +1,16 @@
+{
+  "name": "english-writing-coach",
+  "version": "0.2.0",
+  "description": "Global Korean-first English writing coaching through a SessionStart hook.",
+  "author": {
+    "name": "jujeon"
+  },
+  "license": "MIT",
+  "keywords": [
+    "english",
+    "writing",
+    "korean",
+    "coaching",
+    "hooks"
+  ]
+}
