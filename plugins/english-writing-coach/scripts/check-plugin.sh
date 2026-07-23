@@ -4,11 +4,11 @@ set -euo pipefail
 
 PLUGIN_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
-jq -e '.name == "english-writing-coach" and .hooks == "./hooks/hooks-codex.json"' \
+jq -e '.name == "english-writing-coach" and .version == "0.4.0" and .hooks == "./hooks/hooks-codex.json"' \
   "${PLUGIN_DIR}/.codex-plugin/plugin.json" >/dev/null
 jq -e '.name == "english-writing-coach" and .version == "0.4.0"' \
   "${PLUGIN_DIR}/.claude-plugin/plugin.json" >/dev/null
-jq -e '.name == "use-english" and .plugins[0].name == "english-writing-coach"' \
+jq -e '.name == "use-english" and .plugins[0].name == "english-writing-coach" and .plugins[0].version == "0.4.0"' \
   "${PLUGIN_DIR}/.claude-plugin/marketplace.json" >/dev/null
 jq -e '.hooks.SessionStart[0].hooks[0].command | contains("CLAUDE_PLUGIN_ROOT")' \
   "${PLUGIN_DIR}/hooks/hooks.json" >/dev/null
@@ -27,6 +27,8 @@ jq -e '.hookSpecificOutput.additionalContext | contains("do the actual task")' \
 jq -e '.hookSpecificOutput.additionalContext | contains("internal reasoning in English")' \
   <<<"${hook_output}" >/dev/null
 jq -e '.hookSpecificOutput.additionalContext | contains("English input — coach fully, then execute")' \
+  <<<"${hook_output}" >/dev/null
+jq -e '.hookSpecificOutput.additionalContext | contains("For an English message without a `//` prefix, provide full writing coaching,\nthen execute the request.")' \
   <<<"${hook_output}" >/dev/null
 jq -e '.hookSpecificOutput.additionalContext | contains("Korean input — translate only")' \
   <<<"${hook_output}" >/dev/null

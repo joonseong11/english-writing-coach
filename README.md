@@ -9,8 +9,9 @@ A tiny, code-free repo that turns an AI coding agent — **Claude Code** or
 - Start a message with **`//`** → it handles the request with only a tiny
   English coaching block.
 
-The English sentence stays English; all coaching explanations are Korean. This
-keeps English prompts from producing a wall of English feedback.
+The agent reasons internally in English. Corrected or translated English stays
+English; coaching explanations and task responses are Korean. This keeps English
+prompts from producing a wall of English feedback.
 
 > Built for native Korean speakers who want to get comfortable writing English
 > prompts — but it works for any English learner.
@@ -50,19 +51,21 @@ call is unclear. It will never answer a delegated brief with coaching alone.
 ## Migration to v0.4.0
 
 Writing in English now runs the request after full coaching. Only Korean without
-`//` stays translation-only; `//` still forces execution in every language with
-the smaller coaching block.
+`//` stays translation-only; `//` forces execution in every language with the
+smaller coaching block. If you are upgrading from v0.2.x, this reverses the old
+`//` coach-only behavior: a prefixed request is now executed.
 
 ## What's inside
 
 | File | Purpose |
 |------|---------|
-| `CLAUDE.md` | The coaching rules (read automatically by Claude Code) |
+| `CLAUDE.md` | Repo instructions that mirror the canonical plugin behavior |
 | `AGENTS.md` | Symlink → `CLAUDE.md` (read automatically by Codex) |
 | `.coach/intro.md` | The welcome-banner text |
 | `.coach/session-start.sh` | Session-start hook that shows the banner |
 | `.claude/settings.json` | Registers the banner hook for Claude Code |
 | `.codex/hooks.json` | Registers the banner hook for Codex |
+| `plugins/english-writing-coach/behavior.md` | Canonical coaching rules injected by the plugin |
 | `plugins/english-writing-coach/` | Installable Claude Code + Codex plugin |
 | `.agents/plugins/marketplace.json` | Local Codex marketplace entry |
 
@@ -109,11 +112,11 @@ and removes only the legacy `/Users/jujeon/dev/english-layer/inject.sh` entry.
 
 **You:** `please explain what this plugin do`
 
-> **✅ 교정문**
+**✅ 교정문**
 > Please explain what this plugin does.
->
-> **🔧 수정 사항**
-> - `do` → `does` — 주어가 3인칭 단수이므로 동사에 **-s**를 붙입니다.
+
+**🔧 수정 사항**
+- `do` → `does` — 주어가 3인칭 단수이므로 동사에 **-s**를 붙입니다.
 
 ---
 
