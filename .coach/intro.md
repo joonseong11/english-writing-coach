@@ -2,7 +2,6 @@
 
 This repo is your space to practice writing English prompts.
 
-• Write normally → your task gets done, with a tiny English coaching block on top.
-• Start a message with // → coach-only: full correction/translation, never executed.
-  - English → ✅ Corrected / 🔧 Changes / 💡 More natural / 📝 Tip
-  - Korean (한글) → 🇬🇧 natural translation / 🗣️ alternatives / 📝 tip
+• Write in Korean → natural translation only; the request is not executed.
+• Write in English or mixed → full coaching, then your task gets done.
+• Start a message with // → your task gets done with a tiny English block.

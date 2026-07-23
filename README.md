@@ -3,11 +3,11 @@
 A tiny, code-free repo that turns an AI coding agent — **Claude Code** or
 **Codex** — into your personal **English writing coach**.
 
-- Write normally → it handles your task as usual, opening the reply with a tiny
-  English coaching block (your English corrected, or the natural English you
-  could have written instead of Korean).
-- Start a message with **`//`** → coach-only mode: it corrects or translates
-  the text with full coaching, and never executes it.
+- Write in Korean → it translates your text into natural English and does not
+  run the request it describes.
+- Write in English → it gives full writing coaching, then handles the request.
+- Start a message with **`//`** → it handles the request with only a tiny
+  English coaching block.
 
 The English sentence stays English; all coaching explanations are Korean. This
 keeps English prompts from producing a wall of English feedback.
@@ -19,14 +19,39 @@ keeps English prompts from producing a wall of English feedback.
 
 Open this repo with Claude Code or Codex and just start typing:
 
-- **Normal message** → the agent answers it as your working assistant, with a
-  1–3 line English block on top, then the actual response in Korean.
-- **A message starting with `//`** → coach-only, full coaching:
-  - English → ✅ Corrected · 🔧 Changes · 💡 More natural · 📝 Tip
+- **Korean message** → translation coaching only:
   - Korean (한글) → 🇬🇧 natural translation · 🗣️ Alternatives · 📝 Tip
+- **English or mixed message** → full writing coaching, then the agent executes
+  the request:
+  - English → ✅ Corrected · 🔧 Changes · 💡 More natural · 📝 Tip
+  - Mixed → one combined natural version · fixes for English parts
+- **A message starting with `//`** → the agent executes the request, with a
+  1–3 line English block on top and the actual response in Korean.
 
-In coach-only mode the agent never *executes* what the text describes — even
-`// build a function…` is treated as a sentence to fix, not a task to run.
+Korean translation-only replies end with a reminder to write in English or add
+`//` when you want the agent to act. A `//` marker is recognized only at the
+start of the message.
+
+## Automation and agent-to-agent calls
+
+Translation-only mode applies to Korean messages you type. It is not meant to
+block scripts, scheduled agents, or one agent delegating to another. If you
+drive this repository — or any session with the plugin installed — from
+automation:
+
+- prefix the brief with `//`, or
+- set `ENGLISH_LAYER=off` for that process (`~/.english-layer-off` disables it
+  persistently).
+
+An agent that receives an unprefixed brief it believes is automated will run it
+without a coaching block rather than return a correction, and will ask when the
+call is unclear. It will never answer a delegated brief with coaching alone.
+
+## Migration to v0.4.0
+
+Writing in English now runs the request after full coaching. Only Korean without
+`//` stays translation-only; `//` still forces execution in every language with
+the smaller coaching block.
 
 ## What's inside
 
@@ -82,19 +107,18 @@ and removes only the legacy `/Users/jujeon/dev/english-layer/inject.sh` entry.
 
 ## Example
 
-**You:** `// i wanna make a function that get user data`
+**You:** `please explain what this plugin do`
 
 > **✅ 교정문**
-> I want to make a function that gets user data.
+> Please explain what this plugin does.
 >
 > **🔧 수정 사항**
-> - `i wanna` → `I want to` — "I"는 대문자로 쓰고 "wanna"는 글에서는 구어체입니다.
-> - `get` → `gets` — 단수 주어에는 **-s**를 붙입니다.
->
-> **💡 더 자연스럽게**
-> I want to write a function that fetches user data.
+> - `do` → `does` — 주어가 3인칭 단수이므로 동사에 **-s**를 붙입니다.
 
-The function is **not** written — only your sentence is.
+---
+
+The plugin explanation is then given in Korean — your English receives full
+coaching, and the request still runs.
 
 ## License
 

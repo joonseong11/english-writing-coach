@@ -1,6 +1,6 @@
 {
   "name": "english-writing-coach",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Global Korean-first English writing coaching through a SessionStart hook.",
   "author": {
     "name": "jujeon"
